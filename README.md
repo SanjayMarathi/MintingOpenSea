@@ -1,5 +1,44 @@
-# To Install and Run the Project
+<h1>NFT Marketplace on Internet Computer</h1>
+<p>This project is a decentralized NFT marketplace built on the Internet Computer (ICP) using Motoko for the backend and React for the frontend.
+It allows users to mint, view, and discover NFTs seamlessly through a blockchain-powered web interface.</p>
+<h2>Project Overview</h2>
+<p>The NFT Marketplace enables users to create unique digital assets (NFTs), store them securely on the Internet Computer blockchain, and showcase them publicly. Each NFT contains metadata such as name, owner, and image content, ensuring transparency and true digital ownership.
 
+The project demonstrates the integration of frontend (React) and backend (Motoko canisters) using the DFINITY SDK, connecting the decentralized logic with a modern, responsive user interface.</p>
+
+<h2>Key Features</h2>
+<p>🔹1. Minting NFTs
+
+  Users can upload images and mint their own NFTs.
+
+  Each NFT is stored as a unique asset on the blockchain.
+
+  Metadata like name and owner principal is saved immutably.
+
+  Powered by a Motoko smart contract that manages NFT logic.
+
+  🔹 2. Viewing Minted NFTs
+
+  After minting, users receive a confirmation page showing their newly created NFT.
+
+  Ownership and asset details are fetched directly from the canister.
+
+  🔹 3. My NFTs Section
+
+  Displays all NFTs owned by the logged-in user.
+
+  Fetches and renders assets stored under the user’s principal ID.
+
+  Clean gallery layout built with React and integrated canister calls.
+
+  🔹 4. Discover Section
+
+  A public gallery showing NFTs minted by all users.
+
+  Helps explore other creators’ NFTs available on the network.
+
+  Encourages engagement and showcases decentralized content.</p>
+# To Install and Run the Project
 1. start local dfx
 
 ```
@@ -21,63 +60,6 @@ dfx deploy --argument='("CryptoDunks #123", principal "r4ac2-uva4p-lpemj-xuv2a-t
 4. Head to localhost
 
 http://localhost:8080/
-
-# Minter Else HTML
-
-```
- <div className="minter-container">
-        <h3 className="Typography-root makeStyles-title-99 Typography-h3 form-Typography-gutterBottom">
-          Minted!
-        </h3>
-        <div className="horizontal-center">
-        </div>
-      </div>
-
-```
-
-# Loader HTML
-
-```
-<div className="lds-ellipsis">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-```
-
-# Button HTML
-
-```
-<div className="Chip-root makeStyles-chipBlue-108 Chip-clickable">
-            <span
-              onClick={}
-              className="form-Chip-label"
-            >
-              Sell
-            </span>
-            </div>
-```
-
-# Price Input HTML
-
-```
-<input
-        placeholder="Price in DANG"
-        type="number"
-        className="price-input"
-        value={}
-        onChange={}
-      />
-```
-
-# Price Label HTML
-
-```
-<div className="disButtonBase-root disChip-root makeStyles-price-23 disChip-outlined">
-          <span className="disChip-label">23 DANG</span>
-        </div>
-```
 
 # Creating NFT for Testing
 
@@ -114,3 +96,27 @@ dfx canister call <REPLACE WITH NFT CANISTER ID> transferOwnership '(principal "
 ```
 const dangPrincipal = Principal.fromText("<REPLACE WITH TOKEN CANISTER ID>");
 ```
+
+<div>
+  <h1>Minting Page</h1>
+    <img src="ouput/mintingPage.png" alt="mintingPage"></img>
+    <p>The Minting Page allows users to create (mint) their own NFTs by uploading an image, assigning a name, and confirming the minting process. It connects to the backend canister to securely store the NFT data on the blockchain.</p>
+</div>
+
+<div>
+  <h1>Minted</h1>
+    <img src="ouput/minted.png" alt="minted"></img>
+    <p>Once the minting process is completed, the Minted Page displays a confirmation along with the NFT details — including the name, unique ID, and ownership information — confirming successful NFT creation.</p>
+</div>
+
+<div>
+  <h1>My NFTs</h1>
+    <img src="ouput/myNFTs.png" alt="My NFTs"></img>
+    <p>The My NFTs Page showcases all NFTs owned by the current user. It fetches NFT data from the blockchain and displays them in a gallery-style layout, allowing the user to view or manage their digital assets.</p>
+</div>
+
+<div>
+  <h1>Discover</h1>
+    <img src="ouput/discover.png" alt="discover"></img>
+    <p>The Discover Page displays NFTs created by other users on the platform. It helps users explore, view, and potentially interact with NFTs across the entire marketplace.</p>
+</div>
