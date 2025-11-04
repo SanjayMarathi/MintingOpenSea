@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import logo from "../../assets/logo.png";
 import { HttpAgent } from "@dfinity/agent";
 import { idlFactory } from "../../../declarations/nft";
-import {Principal} from "@dfinity/principal";
+import { Principal } from "@dfinity/principal";
 import { Actor } from "@dfinity/agent";
 import Button from "./Button";
-import {opend} from "../../../declarations/opend";
+import { opend } from "../../../declarations/opend";
 import CURRENT_USER_ID from "../index";
 import PriceLabel from "./PriceLabel";
 
@@ -15,7 +15,7 @@ function Item(props) {
   const [image, setImage] = useState();
   const [button, setButton] = useState();
   const [priceInput, setPriceInput] = useState();
-  const [loaderHidden, setLoaderHidden] = useState(true); 
+  const [loaderHidden, setLoaderHidden] = useState(true);
   const [blur, setBlur] = useState();
   const [priceLabel, setPriceLabel] = useState();
 
@@ -46,22 +46,22 @@ function Item(props) {
     setOwner(owner.toText());
     setImage(image);
 
-    if(props.role == "collection") {
+    if (props.role == "collection") {
       const nftIsListed = await opend.isListed(props.id);
-      if(nftIsListed) {
+      if (nftIsListed) {
         setOwner("OpenD");
-        setBlur({filter: "blur(4px)"});
+        setBlur({ filter: "blur(4px)" });
       } else {
-        setButton(<Button handleClick={handleSell} text={"Sell"}/>);
+        setButton(<Button handleClick={handleSell} text={"Sell"} />);
       }
-    } else if(props.role == "discover") {
+    } else if (props.role == "discover") {
       const originalOwner = await opend.getOriginalOwner(props.id);
-      if(originalOwner.toText() != CURRENT_USER_ID.toText()) {
-        setButton(<Button handleClick={handleBuy} text={"Buy"}/>);
+      if (originalOwner.toText() != CURRENT_USER_ID.toText()) {
+        setButton(<Button handleClick={handleBuy} text={"Buy"} />);
       }
 
       const price = await opend.getListedNFTPrice(props.id);
-      setPriceLabel(<PriceLabel sellPrice={price.toString()}/>);
+      setPriceLabel(<PriceLabel sellPrice={price.toString()} />);
     }
   }
 
@@ -72,28 +72,28 @@ function Item(props) {
   let price;
 
   function handleSell() {
-    setPriceInput (
+    setPriceInput(
       <input
-          placeholder="Price in DANG"
-          type="number"
-          className="price-input"
-          value={price}
-          onChange={(e) => (price = e.target.value)}
+        placeholder="Price in DANG"
+        type="number"
+        className="price-input"
+        value={price}
+        onChange={(e) => (price = e.target.value)}
       />
     );
-    setButton(<Button handleClick={sellItem} text={"Confirm"}/>);
+    setButton(<Button handleClick={sellItem} text={"Confirm"} />);
   }
 
   async function sellItem() {
-    setBlur({filter: "blur(4px)"});
+    setBlur({ filter: "blur(4px)" });
     setLoaderHidden(false);
     const listingResult = await opend.listItem(props.id, Number(price));
-    console.log("listing: "+ listingResult);
-    if(listingResult === "Success") {
+    console.log("listing: " + listingResult);
+    if (listingResult === "Success") {
       const openDId = await opend.getOpenDCanisterId();
       const transferResult = await NFTActor.transferOwnerShip(openDId);
-      console.log("transfer: "+ transferResult);
-      if(transferResult == "Success") {
+      console.log("transfer: " + transferResult);
+      if (transferResult == "Success") {
         setLoaderHidden(true);
         setButton();
         setPriceInput();
@@ -103,8 +103,19 @@ function Item(props) {
   }
 
   async function handleBuy() {
-    console.log("Buy Was triggered");
-  };
+    setLoaderHidden(false);
+    const result = await opend.purchase(props.id);
+    if (result === "Success") {
+      setLoaderHidden(true);
+      setButton();
+      setPriceLabel();
+      setOwner(CURRENT_USER_ID.toText());
+      setBlur();
+    } else {
+      console.log(result);
+    }
+  }
+
 
   return (
     <div className="disGrid-item">
@@ -119,7 +130,7 @@ function Item(props) {
           <div></div>
           <div></div>
           <div></div>
-          </div>
+        </div>
         <div className="disCardContent-root">
           {priceLabel}
           <h2 className="disTypography-root makeStyles-bodyText-24 disTypography-h5 disTypography-gutterBottom">
