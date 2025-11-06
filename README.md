@@ -1,3 +1,29 @@
+
+
+<div>
+  <h1>Minting Page</h1>
+    <img src="ouput/mintingPage.png" alt="mintingPage"></img>
+    <p>The Minting Page allows users to create (mint) their own NFTs by uploading an image, assigning a name, and confirming the minting process. It connects to the backend canister to securely store the NFT data on the blockchain.</p>
+</div>
+
+<div>
+  <h1>Minted</h1>
+    <img src="ouput/minted.png" alt="minted"></img>
+    <p>Once the minting process is completed, the Minted Page displays a confirmation along with the NFT details — including the name, unique ID, and ownership information — confirming successful NFT creation.</p>
+</div>
+
+<div>
+  <h1>My NFTs</h1>
+    <img src="ouput/myNFTs.png" alt="My NFTs"></img>
+    <p>The My NFTs Page showcases all NFTs owned by the current user. It fetches NFT data from the blockchain and displays them in a gallery-style layout, allowing the user to view or manage their digital assets.</p>
+</div>
+
+<div>
+  <h1>Discover</h1>
+    <img src="ouput/discover.png" alt="discover"></img>
+    <p>The Discover Page displays NFTs created by other users on the platform. It helps users explore, view, and potentially interact with NFTs across the entire marketplace.</p>
+</div>
+
 <h1>NFT Marketplace on Internet Computer</h1>
 <p>This project is a decentralized NFT marketplace built on the Internet Computer (ICP) using Motoko for the backend and React for the frontend.
 It allows users to mint, view, and discover NFTs seamlessly through a blockchain-powered web interface.</p>
@@ -96,27 +122,3 @@ dfx canister call <REPLACE WITH NFT CANISTER ID> transferOwnership '(principal "
 ```
 const dangPrincipal = Principal.fromText("<REPLACE WITH TOKEN CANISTER ID>");
 ```
-
-<div>
-  <h1>Minting Page</h1>
-    <img src="ouput/mintingPage.png" alt="mintingPage"></img>
-    <p>The Minting Page allows users to create (mint) their own NFTs by uploading an image, assigning a name, and confirming the minting process. It connects to the backend canister to securely store the NFT data on the blockchain.</p>
-</div>
-
-<div>
-  <h1>Minted</h1>
-    <img src="ouput/minted.png" alt="minted"></img>
-    <p>Once the minting process is completed, the Minted Page displays a confirmation along with the NFT details — including the name, unique ID, and ownership information — confirming successful NFT creation.</p>
-</div>
-
-<div>
-  <h1>My NFTs</h1>
-    <img src="ouput/myNFTs.png" alt="My NFTs"></img>
-    <p>The My NFTs Page showcases all NFTs owned by the current user. It fetches NFT data from the blockchain and displays them in a gallery-style layout, allowing the user to view or manage their digital assets.</p>
-</div>
-
-<div>
-  <h1>Discover</h1>
-    <img src="ouput/discover.png" alt="discover"></img>
-    <p>The Discover Page displays NFTs created by other users on the platform. It helps users explore, view, and potentially interact with NFTs across the entire marketplace.</p>
-</div>
